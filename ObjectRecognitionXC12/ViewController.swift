@@ -49,7 +49,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             guard let results = request.results as? [VNClassificationObservation] else {
                 fatalError("request failed CoreML")
             }
-            print(results)
+            if let result = results.first?.identifier {
+                self.navigationItem.title = result
+            }
         }
         let handler = VNImageRequestHandler(ciImage: ciimage)
         do {
